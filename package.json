@@ -1,0 +1,24 @@
+{
+	"name": "todo-app-vite",
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"serve": "vite preview --host 0.0.0.0"
+	},
+	"devDependencies": {
+		"@sveltejs/vite-plugin-svelte": "^1.0.0-next.11",
+		"autoprefixer": "^10.3.1",
+		"cssnano": "^5.0.6",
+		"postcss": "^8.3.5",
+		"postcss-load-config": "^3.1.0",
+		"svelte": "^3.37.0",
+		"svelte-preprocess": "^4.7.4",
+		"tailwindcss": "^2.2.4",
+		"vite": "^2.4.4"
+	},
+	"dependencies": {
+		"svelte-routing": "^1.6.0"
+	}
+}
