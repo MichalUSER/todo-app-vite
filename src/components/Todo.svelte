@@ -58,7 +58,6 @@
 	</div>
 	<div class="todos">
 		{#each $todos as { title, description, height }, index}
-			{@debug title}
 			<div class="todo" transition:fade={{ duration: 100 }}>
 				<input type="text" bind:value={title} />
 				<div bind:clientHeight={height} style="height: {height}px;">
@@ -112,7 +111,7 @@
 		@apply bg-transparent text-center text-indigo-800 font-medium text-2xl focus:outline-none;
 	}
 	.todo_textarea {
-		@apply bg-transparent text-center text-indigo-800 resize-none focus:outline-none;
+		@apply bg-transparent text-center font-light text-indigo-800 resize-none focus:outline-none;
 	}
 	.todo > button {
 		@apply text-2xl text-red-500 focus:outline-none;
