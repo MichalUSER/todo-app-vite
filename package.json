@@ -16,7 +16,9 @@
 		"svelte": "^3.37.0",
 		"svelte-preprocess": "^4.7.4",
 		"tailwindcss": "^2.2.4",
-		"vite": "^2.4.4"
+		"vite": "^2.4.4",
+		"vite-plugin-pwa": "^0.10.0",
+		"workbox-window": "^6.2.4"
 	},
 	"dependencies": {
 		"svelte-routing": "^1.6.0"

@@ -2,6 +2,7 @@
 	import { todos } from "../stores.js";
 	import TailwindTheme, { toggle } from "./TailwindTheme.svelte";
 	import { fade } from "svelte/transition";
+	import ReloadPrompt from "./ReloadPrompt.svelte";
 
 	let todoTitle = "";
 	let todoDescription = "";
@@ -33,6 +34,7 @@
 	}
 </script>
 
+<ReloadPrompt />
 <TailwindTheme />
 <header>
 	<h1>Todo app</h1>
