@@ -2,16 +2,11 @@
 	import { todos } from "../stores.js";
 	import TailwindTheme, { toggle } from "./TailwindTheme.svelte";
 	import { fade } from "svelte/transition";
-	import { onMount } from "svelte";
 	import ReloadPrompt from "./ReloadPrompt.svelte";
 
 	let todoTitle = "";
 	let todoDescription = "";
 	let defaultHeight = 40;
-
-	onMount(() => {
-		document.title = "Todo";
-	});
 
 	function add() {
 		if (todoTitle.length != 0) {
@@ -38,6 +33,10 @@
 		localStorage.setItem("todos", JSON.stringify($todos));
 	}
 </script>
+
+<svelte:head>
+	<title>Todo app</title>
+</svelte:head>
 
 <ReloadPrompt />
 <TailwindTheme />

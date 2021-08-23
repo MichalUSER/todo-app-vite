@@ -3,6 +3,10 @@
 	import TailwindTheme from "./TailwindTheme.svelte";
 </script>
 
+<svelte:head>
+	<title>Todo homepage</title>
+</svelte:head>
+
 <TailwindTheme />
 <nav>
 	<div class="link">
