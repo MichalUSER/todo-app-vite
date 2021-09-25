@@ -1,12 +1,13 @@
 <script>
 	import { todos } from "../stores.js";
-	import TailwindTheme, { toggle } from "./TailwindTheme.svelte";
+	import TailwindTheme from "./TailwindTheme.svelte";
 	import { fade } from "svelte/transition";
-	import ReloadPrompt from "./ReloadPrompt.svelte";
+	import Settings from "./Settings.svelte";
 
 	let todoTitle = "";
 	let todoDescription = "";
 	let defaultHeight = 40;
+	let settingsVisible = false;
 
 	function add() {
 		if (todoTitle.length != 0) {
@@ -38,8 +39,12 @@
 	<title>Todo app</title>
 </svelte:head>
 
-<ReloadPrompt />
 <TailwindTheme />
+
+{#if settingsVisible}
+	<Settings />
+{/if}
+
 <header>
 	<h1>Todo app</h1>
 </header>
@@ -74,7 +79,11 @@
 		{/each}
 	</div>
 </main>
-<button class="toggle" on:click={toggle}>⚙️</button>
+{#if !settingsVisible}
+	<button class="toggle" on:click={() => (settingsVisible = !settingsVisible)}
+		>⚙️</button
+	>
+{/if}
 
 <style type="postcss">
 	header {
