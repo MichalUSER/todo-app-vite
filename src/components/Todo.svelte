@@ -1,13 +1,11 @@
 <script>
-	import { todos } from "../stores.js";
-	import TailwindTheme from "./TailwindTheme.svelte";
+	import { todos, settings } from "../stores.js";
 	import { fade } from "svelte/transition";
 	import Settings from "./Settings.svelte";
 
 	let todoTitle = "";
 	let todoDescription = "";
 	let defaultHeight = 40;
-	let settingsVisible = false;
 
 	function add() {
 		if (todoTitle.length != 0) {
@@ -39,9 +37,7 @@
 	<title>Todos</title>
 </svelte:head>
 
-<TailwindTheme />
-
-{#if settingsVisible}
+{#if $settings.visible}
 	<Settings />
 {/if}
 
@@ -79,9 +75,10 @@
 		{/each}
 	</div>
 </main>
-{#if !settingsVisible}
-	<button class="toggle" on:click={() => (settingsVisible = !settingsVisible)}
-		>⚙️</button
+{#if !$settings.visible}
+	<button
+		class="toggle"
+		on:click={() => ($settings.visible = !$settings.visible)}>⚙️</button
 	>
 {/if}
 
