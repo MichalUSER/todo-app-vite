@@ -7,6 +7,7 @@ if (localStorage.getItem("todos") !== null) {
 
 export const { todos, settings } = {
     todos: writable(storedTodos), settings: writable({
-        visible: false
+        visible: false,
+        description: true
     })
 };
