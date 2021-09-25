@@ -24,9 +24,7 @@
             {#if $offlineReady}
                 <span> App ready to work offline </span>
             {:else}
-                <span>
-                    Update available
-                </span>
+                <span> Update available </span>
             {/if}
         </div>
         {#if $needRefresh}

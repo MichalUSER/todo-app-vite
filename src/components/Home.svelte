@@ -1,13 +1,11 @@
 <script>
 	import { Link } from "svelte-routing";
-	import TailwindTheme from "./TailwindTheme.svelte";
 </script>
 
 <svelte:head>
-	<title>Todo homepage</title>
+	<title>Homepage</title>
 </svelte:head>
 
-<TailwindTheme />
 <nav>
 	<div class="link">
 		<Link class="link" to="/todo">Todo app</Link>

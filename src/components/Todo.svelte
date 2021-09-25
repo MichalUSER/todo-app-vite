@@ -36,7 +36,7 @@
 </script>
 
 <svelte:head>
-	<title>Todo app</title>
+	<title>Todos</title>
 </svelte:head>
 
 <TailwindTheme />
