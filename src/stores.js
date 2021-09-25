@@ -4,4 +4,5 @@ let storedTodos = [];
 if (localStorage.getItem("todos") !== null) {
     storedTodos = JSON.parse(localStorage.getItem("todos"));
 }
-export const todos = writable(storedTodos);
+
+export const { todos, settings } = { todos: writable(storedTodos), settings: writable(new Map()) };
