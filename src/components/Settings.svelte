@@ -1,9 +1,11 @@
 <script>
     import { toggle } from "./TailwindTheme.svelte";
-    import { settings } from "../stores";
+    import { todos, settings } from "../stores";
 
-    function exit() {
+    function save() {
         $settings.visible = false;
+        localStorage.setItem("todos", JSON.stringify($todos));
+        localStorage.setItem("settings", JSON.stringify($settings));
     }
     function toggleDescription() {
         $settings.description = !$settings.description;
@@ -13,13 +15,14 @@
 <!-- 
 Todo
     - Show/Hide todo's description
+    - Turn it into a checkbox
 -->
 
 <nav>
     <h1>Settings</h1>
     <button on:click={toggle}>Switch theme</button>
     <button on:click={toggleDescription}>Toggle todo's description</button>
-    <button on:click={exit}>Exit</button>
+    <button on:click={save}>Save stuff</button>
 </nav>
 
 <style lang="postcss">
