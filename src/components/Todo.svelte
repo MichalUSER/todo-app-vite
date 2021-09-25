@@ -67,9 +67,14 @@
 		{#each $todos as { title, description, height }, index}
 			<div class="todo" transition:fade={{ duration: 100 }}>
 				<input type="text" bind:value={title} />
-				<div bind:clientHeight={height} style="height: {height}px;">
-					<textarea class="todo_textarea" bind:value={description} />
-				</div>
+				{#if $settings.description}
+					<div bind:clientHeight={height} style="height: {height}px;">
+						<textarea
+							class="todo_textarea"
+							bind:value={description}
+						/>
+					</div>
+				{/if}
 				<button on:click={() => remove(index)}>x</button>
 			</div>
 		{/each}
