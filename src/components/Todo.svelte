@@ -132,6 +132,6 @@
 	}
 
 	.toggle {
-		@apply text-2xl cursor-pointer fixed top-0 right-0 m-4;
+		@apply text-2xl text-white cursor-pointer fixed top-0 right-0 m-4;
 	}
 </style>
