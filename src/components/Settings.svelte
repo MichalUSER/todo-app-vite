@@ -30,12 +30,14 @@ Todo
     }}
 >
     <h1>Settings</h1>
-    <button on:click={toggle}>Switch theme</button>
+    <button class="button1" on:click={toggle}>Switch theme</button>
     <div class="checkbox_div">
         <div class="checkbox" on:click={toggleDescription} />
         <p>Toggle todo's description</p>
     </div>
-    <button class="save" on:click={save}>Save stuff</button>
+    <button class="button1 fixed bottom-5 font-semibold" on:click={save}
+        >Save stuff</button
+    >
 </nav>
 
 <style lang="postcss">
@@ -45,13 +47,6 @@ Todo
 
     h1 {
         @apply text-custom-indigo text-4xl m-5;
-    }
-
-    button {
-        @apply px-6 py-1 mt-5 rounded border-2 border-opacity-0 text-lg font-medium bg-indigo-400 cursor-pointer focus:border-indigo-600 focus:outline-none;
-    }
-    .save {
-        @apply fixed bottom-5 font-semibold;
     }
     .checkbox_div {
         @apply flex justify-start items-center h-4 mt-10;

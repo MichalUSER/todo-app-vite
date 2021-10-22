@@ -51,7 +51,7 @@
 				bind:value={todoTitle}
 				on:keydown={(e) => e.key === "Enter" && add()}
 			/>
-			<button class="add" on:click={add}>Add</button>
+			<button class="button1 mt-2 md:mt-0" on:click={add}>Add</button>
 			<!-- <textarea
 				bind:value={todoDescription}
 				class="form_textarea"
@@ -108,9 +108,9 @@
 		@apply mx-4 my-2 max-h-48 text-lg border border-indigo-800 bg-transparent px-3 py-2 focus:outline-none focus:border-indigo-300 transition;
 	} */
 
-	.add {
-		@apply px-6 py-1 mt-2 md:mt-0 rounded border-2 border-opacity-0 text-lg bg-indigo-300 border-indigo-300 cursor-pointer focus:border-indigo-500 focus:outline-none;
-	}
+	/*.add {
+		@apply px-6 py-1 rounded border-2 border-opacity-0 text-lg bg-indigo-300 border-indigo-300 cursor-pointer focus:border-indigo-500 focus:outline-none;
+	}*/
 
 	.todos {
 		@apply mt-8 flex flex-col items-center;
