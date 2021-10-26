@@ -1,6 +1,5 @@
 <script>
     import { fly } from "svelte/transition";
-    import { quintOut } from "svelte/easing";
     import { toggle } from "./TailwindTheme.svelte";
     import { todos, settings } from "../stores";
 
@@ -18,22 +17,29 @@
 Todo
     - Add navbar animation - done
     - Show/Hide todo's description - done
-    - Turn it into a checkbox - almost done, missing red/green colors
+    - Turn it into a checkbox - almost done, missing red/green colors - done
 -->
 
 <nav
     transition:fly={{
-        duration: 100,
+        duration: 200,
         x: 200,
         opacity: 0.4,
-        easing: quintOut,
     }}
 >
     <h1>Settings</h1>
-    <button class="button1" on:click={toggle}>Switch theme</button>
+    <button class="button1" on:click={toggle}>🌙</button>
     <div class="checkbox_div">
-        <div class="checkbox" on:click={toggleDescription} />
-        <p>Toggle todo's description</p>
+        <div
+            class="checkbox"
+            class:checkbox_toggled={$settings.description}
+            on:click={toggleDescription}
+        />
+        <p>Todos description</p>
+    </div>
+    <div class="checkbox_div">
+        <div class="checkbox" />
+        <p>Completion background</p>
     </div>
     <button class="button1 fixed bottom-5 font-semibold" on:click={save}
         >Save stuff</button
@@ -52,6 +58,9 @@ Todo
         @apply flex justify-start items-center h-4 mt-10;
     }
     .checkbox {
-        @apply h-8 w-8 mr-2 rounded border-2 border-opacity-0 cursor-pointer bg-indigo-400;
+        @apply h-6 w-6 mr-2 rounded border border-indigo-900 cursor-pointer bg-transparent transition;
+    }
+    .checkbox_toggled {
+        @apply bg-gray-900;
     }
 </style>
