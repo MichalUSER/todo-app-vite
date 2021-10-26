@@ -17,7 +17,7 @@
 Todo
     - Add navbar animation - done
     - Show/Hide todo's description - done
-    - Turn it into a checkbox - almost done, missing red/green colors - done
+    - Turn it into a checkbox - done, maybe missing red/green colors
 -->
 
 <nav
