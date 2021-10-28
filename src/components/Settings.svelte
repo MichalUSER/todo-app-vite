@@ -48,7 +48,8 @@ Todo
 
 <style lang="postcss">
     nav {
-        @apply fixed top-0 right-0 h-screen w-screen md:w-auto px-16 py-8 bg-indigo-300 flex flex-col items-center;
+        @apply bg-indigo-300 top-0 right-0 h-screen w-screen md:w-auto px-16 py-8;
+		@apply flex flex-col items-center fixed z-10;
     }
 
     h1 {
