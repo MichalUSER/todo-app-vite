@@ -7,7 +7,8 @@ if (localStorage.getItem("todos") !== null) {
 
 let storedSettings = {
     visible: false,
-    description: true
+    description: true,
+	completionStyles: true
 };
 if (localStorage.getItem("settings") !== null) {
     storedSettings = JSON.parse(localStorage.getItem("settings"));

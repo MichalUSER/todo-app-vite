@@ -14,6 +14,7 @@
 				{
 					title: todoTitle,
 					description: todoDescription,
+					completed: false,
 					height: defaultHeight,
 				},
 			];
@@ -27,6 +28,13 @@
 		tempTodos.splice(index, 1);
 		$todos = tempTodos;
 		localStorage.setItem("todos", JSON.stringify($todos));
+	}
+
+	function check(index) {
+		let tempTodos = $todos;
+		console.log(tempTodos[index].completed);
+		tempTodos[index].completed = !tempTodos[index].completed;
+		$todos = tempTodos;
 	}
 </script>
 
@@ -60,10 +68,18 @@
 			/> -->
 		</div>
 	</div>
+	<!--
+	Todo
+		- Split Todo item into a component called TodoItem.svelte
+	-->
 	<div class="todos">
-		{#each $todos as { title, description, height }, index}
-			<div class="todo" transition:fade={{ duration: 100 }}>
-				<input type="text" bind:value={title} />
+		{#each $todos as { title, description, completed, height }, index}
+			<div class="todo" transition:fade={{ duration: 100 }} >
+			<input 
+				type="text"
+				bind:value={title}
+				class:completed={$settings.completionStyle && completed}
+			/>
 				{#if $settings.description}
 					<div bind:clientHeight={height} style="height: {height}px;">
 						<textarea
@@ -72,7 +88,15 @@
 						/>
 					</div>
 				{/if}
-				<button on:click={() => remove(index)}>x</button>
+				<button on:click={() => remove(index)} class="text-red-500">x</button>
+				{#if $settings.completionStyle}
+					<button 
+						on:click={() => check(index)}
+						class="text-black"
+					>
+						🗸
+					</button>
+				{/if}
 			</div>
 		{/each}
 	</div>
@@ -122,13 +146,16 @@
 		@apply resize-y overflow-hidden w-48 md:w-auto;
 	}
 	.todo > input {
-		@apply bg-transparent text-center text-indigo-800 font-medium text-2xl focus:outline-none;
+		@apply bg-transparent text-center text-indigo-800 font-medium text-2xl transition focus:outline-none;
 	}
 	.todo_textarea {
 		@apply bg-transparent text-center font-light text-indigo-800 resize-none focus:outline-none;
 	}
 	.todo > button {
-		@apply text-2xl text-red-500 focus:outline-none;
+		@apply text-2xl focus:outline-none;
+	}
+	.completed {
+		@apply line-through;
 	}
 
 	.toggle {

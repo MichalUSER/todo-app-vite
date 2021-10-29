@@ -11,12 +11,13 @@
     function toggleDescription() {
         $settings.description = !$settings.description;
     }
+	function toggleCompletionStyle() {
+        $settings.completionStyle = !$settings.completionStyle;
+	}
 </script>
 
 <!-- 
 Todo
-    - Add navbar animation - done
-    - Show/Hide todo's description - done
     - Turn it into a checkbox - done, maybe missing red/green colors
 -->
 
@@ -38,12 +39,19 @@ Todo
         <p>Todos description</p>
     </div>
     <div class="checkbox_div">
-        <div class="checkbox" />
-        <p>Completion background</p>
+		<div 
+		 	class="checkbox" 
+			class:checkbox_toggled={$settings.completionStyle}
+			on:click={toggleCompletionStyle}
+		 />
+        <p>Strike through todo name</p>
     </div>
-    <button class="button1 fixed bottom-5 font-semibold" on:click={save}
-        >Save stuff</button
-    >
+	<button 
+		class="button1 fixed bottom-5 font-semibold"
+		on:click={save}
+	>
+		Save stuff
+	</button>
 </nav>
 
 <style lang="postcss">
