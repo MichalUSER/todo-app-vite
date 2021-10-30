@@ -38,14 +38,14 @@
 {/if}
 
 <header>
-	<h1 class="text-4xl">Todo app</h1>
+	<h1 class="text-4xl dark:text-white">Todo app</h1>
 </header>
 <main>
 	<div class="flex flex-col items-center">
 		<div class="flex flex-col items-center md:flex-row">
 			<input
 				type="text"
-				class="form_input"
+				class="form_input dark:text-white dark:border-indigo-500 dark:focus:border-indigo-300"
 				placeholder="Title"
 				bind:value={todoTitle}
 				on:keydown={(e) => e.key === "Enter" && add()}

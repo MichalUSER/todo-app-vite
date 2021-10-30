@@ -8,6 +8,6 @@
 
 <nav>
 	<div class="link">
-		<Link class="link" to="/todo">Todo app</Link>
+		<Link class="m-4 text-3xl text-black dark:text-white" to="/todo">Todo app</Link>
 	</div>
 </nav>
