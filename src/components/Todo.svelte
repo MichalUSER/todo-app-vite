@@ -1,7 +1,7 @@
 <script>
 	import { todos, settings } from "../stores.js";
-	import { fade } from "svelte/transition";
 	import Settings from "./Settings.svelte";
+	import TodoItem from "./TodoItem.svelte";
 
 	let todoTitle = "";
 	let todoDescription = "";
@@ -22,20 +22,6 @@
 			todoDescription = "";
 		}
 	}
-
-	function remove(index) {
-		let tempTodos = $todos;
-		tempTodos.splice(index, 1);
-		$todos = tempTodos;
-		localStorage.setItem("todos", JSON.stringify($todos));
-	}
-
-	function check(index) {
-		let tempTodos = $todos;
-		console.log(tempTodos[index].completed);
-		tempTodos[index].completed = !tempTodos[index].completed;
-		$todos = tempTodos;
-	}
 </script>
 
 <svelte:head>
@@ -44,14 +30,19 @@
 
 {#if $settings.visible}
 	<Settings />
+{:else}
+	<button
+		class="toggle"
+		on:click={() => ($settings.visible = !$settings.visible)}>⚙️</button
+	>
 {/if}
 
 <header>
-	<h1>Todo app</h1>
+	<h1 class="text-4xl">Todo app</h1>
 </header>
 <main>
-	<div class="form">
-		<div class="form_div">
+	<div class="flex flex-col items-center">
+		<div class="flex flex-col items-center md:flex-row">
 			<input
 				type="text"
 				class="form_input"
@@ -59,54 +50,19 @@
 				bind:value={todoTitle}
 				on:keydown={(e) => e.key === "Enter" && add()}
 			/>
-			<button class="button1 mt-2 md:mt-0" on:click={add}>Add</button>
-			<!-- <textarea
-				bind:value={todoDescription}
-				class="form_textarea"
-				placeholder="Description"
-				on:keydown={(e) => e.key === "Enter" && add()}
-			/> -->
+			<button class="button1 mt-2" on:click={add}>Add</button>
 		</div>
 	</div>
-	<!--
-	Todo
-		- Split Todo item into a component called TodoItem.svelte
-	-->
-	<div class="todos">
-		{#each $todos as { title, description, completed, height }, index}
-			<div class="todo" transition:fade={{ duration: 100 }} >
-			<input 
-				type="text"
-				bind:value={title}
-				class:completed={$settings.completionStyle && completed}
+
+	<div class="mt-8 flex flex-col items-center">
+		{#each $todos as todo, index}
+			<TodoItem
+				{...todo}
+				index={index}
 			/>
-				{#if $settings.description}
-					<div bind:clientHeight={height} style="height: {height}px;">
-						<textarea
-							class="todo_textarea"
-							bind:value={description}
-						/>
-					</div>
-				{/if}
-				<button on:click={() => remove(index)} class="text-red-500">x</button>
-				{#if $settings.completionStyle}
-					<button 
-						on:click={() => check(index)}
-						class="text-black"
-					>
-						🗸
-					</button>
-				{/if}
-			</div>
 		{/each}
 	</div>
 </main>
-{#if !$settings.visible}
-	<button
-		class="toggle"
-		on:click={() => ($settings.visible = !$settings.visible)}>⚙️</button
-	>
-{/if}
 
 <style type="postcss">
 	header {
@@ -115,47 +71,9 @@
 	main {
 		@apply mt-8 md:mt-32 flex flex-col items-center;
 	}
-	h1 {
-		@apply text-4xl;
-	}
 
-	.form {
-		@apply flex flex-col items-center;
-	}
-	.form_div {
-		@apply flex flex-col items-center md:flex-row;
-	}
 	.form_input {
 		@apply mx-4 text-lg border border-indigo-600 bg-transparent px-3 py-2 focus:outline-none focus:border-indigo-300 transition;
-	}
-	/* .form_textarea {
-		@apply mx-4 my-2 max-h-48 text-lg border border-indigo-800 bg-transparent px-3 py-2 focus:outline-none focus:border-indigo-300 transition;
-	} */
-
-	/*.add {
-		@apply px-6 py-1 rounded border-2 border-opacity-0 text-lg bg-indigo-300 border-indigo-300 cursor-pointer focus:border-indigo-500 focus:outline-none;
-	}*/
-
-	.todos {
-		@apply mt-8 flex flex-col items-center;
-	}
-	.todo {
-		@apply my-4 px-0 md:px-16 py-8 bg-indigo-300 text-lg flex items-center flex-col;
-	}
-	.todo > div {
-		@apply resize-y overflow-hidden w-48 md:w-auto;
-	}
-	.todo > input {
-		@apply bg-transparent text-center text-indigo-800 font-medium text-2xl transition focus:outline-none;
-	}
-	.todo_textarea {
-		@apply bg-transparent text-center font-light text-indigo-800 resize-none focus:outline-none;
-	}
-	.todo > button {
-		@apply text-2xl focus:outline-none;
-	}
-	.completed {
-		@apply line-through;
 	}
 
 	.toggle {
