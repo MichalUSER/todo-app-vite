@@ -3,6 +3,8 @@
     import { toggle } from "./TailwindTheme.svelte";
     import { todos, settings } from "../stores";
 
+	let msg = "";
+
     function save() {
         $settings.visible = false;
         localStorage.setItem("todos", JSON.stringify($todos));
@@ -14,6 +16,23 @@
 	function toggleCompletionStyle() {
         $settings.completionStyle = !$settings.completionStyle;
 	}
+
+	async function send() {
+		let json = {
+			name: "Michal"
+		};
+		let response = await fetch(`http://localhost:8080/add/michal`, {
+			method: "POST",
+			mode: "no-cors",
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			//body: JSON.stringify($todos[0])
+			body: JSON.stringify(json)
+		});
+		//console.log(response);
+		//this.msg = await response.json();
+    }
 </script>
 
 <!-- 
@@ -46,6 +65,8 @@ Todo
 		 />
         <p>Strike through todo name</p>
     </div>
+	<button class="button1 mt-10" on:click={send}>Send to server</button>
+	<p>{msg}</p>
 	<button 
 		class="button1 fixed bottom-5 font-semibold"
 		on:click={save}
