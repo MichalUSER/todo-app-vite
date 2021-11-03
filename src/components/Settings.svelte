@@ -18,20 +18,15 @@
 	}
 
 	async function send() {
-		let json = {
-			name: "Michal"
-		};
 		let response = await fetch(`http://localhost:8080/add/michal`, {
 			method: "POST",
-			mode: "no-cors",
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			//body: JSON.stringify($todos[0])
-			body: JSON.stringify(json)
+			body: JSON.stringify($todos[0]),
 		});
-		//console.log(response);
-		//this.msg = await response.json();
+		msg = await response.json();
+		msg = msg.status;
     }
 </script>
 
