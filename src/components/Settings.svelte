@@ -23,7 +23,7 @@
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify($todos[0]),
+			body: JSON.stringify($todos),
 		});
 		msg = await response.json();
 		msg = msg.status;
