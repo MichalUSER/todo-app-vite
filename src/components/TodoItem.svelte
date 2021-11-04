@@ -17,7 +17,6 @@
 
 	function check(index) {
 		let tempTodos = $todos;
-		console.log(tempTodos[index].completed);
 		tempTodos[index].completed = !tempTodos[index].completed;
 		$todos = tempTodos;
 	}
@@ -34,7 +33,7 @@
 		class:completed={$settings.completionStyle && completed}
 	/>
 	{#if $settings.description}
-		<div bind:clientHeight={height} style="height: {height}px;">
+		<div bind:clientHeight={height} style="height: {height}px;" class="todo_textarea">
 			<textarea
 				class="bg-transparent text-center font-light text-indigo-800 resize-none focus:outline-none"
 				bind:value={description}
@@ -55,5 +54,9 @@
 	}
 	.completed {
 		@apply line-through;
+	}
+	/* Why doesn't this work in class? */
+	.todo_textarea {
+		@apply resize-y overflow-hidden w-48 md:w-auto;
 	}
 </style>
