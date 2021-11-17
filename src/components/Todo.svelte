@@ -25,10 +25,7 @@
 	<Form />
 	<div class="mt-8 flex flex-col items-center">
 		{#each $todos as todo, index}
-			<TodoItem
-				{...todo}
-				index={index}
-			/>
+			<TodoItem {todo} {index} />
 		{/each}
 	</div>
 </main>

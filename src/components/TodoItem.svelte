@@ -2,11 +2,8 @@
 	import { settings, todos } from "../stores.js";
 	import { fade } from "svelte/transition";
 
-	export let title;
-	export let description;
-	export let completed;
-	export let height;
 	export let index;
+	export let todo;
 
 	function remove(index) {
 		let tempTodos = $todos;
@@ -16,9 +13,10 @@
 	}
 
 	function check(index) {
-		let tempTodos = $todos;
-		tempTodos[index].completed = !tempTodos[index].completed;
-		$todos = tempTodos;
+		//let tempTodos = $todos;
+		//tempTodos[index].completed = !tempTodos[index].completed;
+		//$todos = tempTodos;
+		todo.completed = !todo.completed;
 	}
 </script>
 
@@ -28,23 +26,23 @@
 >
 	<input 
 		type="text"
-		bind:value={title}
+		bind:value={todo.title}
 		class="bg-transparent text-center text-indigo-800 font-medium text-2xl transition focus:outline-none"
-		class:completed={$settings.completionStyle && completed}
+		class:completed={$settings.completionStyle && todo.completed}
 	/>
 	{#if $settings.description}
-		<div bind:clientHeight={height} style="height: {height}px;" class="todo_textarea">
+		<div bind:clientHeight={todo.height} style="height: {todo.height}px;" class="todo_textarea">
 			<textarea
 				class="bg-transparent text-center font-light text-indigo-800 resize-none focus:outline-none"
-				bind:value={description}
+				bind:value={todo.description}
 			/>
 		</div>
 	{/if}
 
-	<button on:click={() => remove(index)} class="text-red-500">x</button>
+	<button on:click={() => remove(todo.index)} class="text-red-500">x</button>
 
 	{#if $settings.completionStyle}
-		<button on:click={() => check(index)} class="text-black">✅</button>
+		<button on:click={() => check(todo.index)} class="text-black">✅</button>
 	{/if}
 </div>
 
